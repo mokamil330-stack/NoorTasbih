@@ -1,0 +1,126 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="NoorTasbih online digital tasbih counter.">
+  <title>NoorTasbih — Online Tasbih Counter</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      NOOR TASBIH
+      <small>REMEMBER ALLAH ALWAYS</small>
+    </div>
+    <div class="top-actions">
+      <button class="icon-btn" id="soundTop" aria-label="Toggle sound">♫</button>
+      <button class="icon-btn" id="themeBtn" aria-label="Toggle dark mode">☾</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow">DIGITAL TASBIH COUNTER</div>
+      <h1>Tasbih Counter Online</h1>
+      <p>Count your Dhikr, one bead at a time.</p>
+    </section>
+
+    <section class="counter-wrap">
+      <div class="bead-track" id="beadTrack">
+        <div class="string"></div>
+        <div id="beads"></div>
+        <div class="count-number" id="count" aria-live="polite">0</div>
+      </div>
+
+      <div class="controls">
+        <button class="round-btn" id="minus" aria-label="Decrease count">−</button>
+        <button class="reset-btn" id="reset">RESET</button>
+        <button class="round-btn" id="plus" aria-label="Increase count">+</button>
+      </div>
+    </section>
+
+    <div class="save-row">
+      <button class="save-btn" id="save">SAVE PROGRESS</button>
+      <button class="save-btn" id="openSessions">LOAD SAVED</button>
+    </div>
+
+    <section class="panel">
+      <h2>Counter Settings</h2>
+      <div class="settings-grid">
+        <label class="setting">Bead sound
+          <input class="toggle" type="checkbox" id="soundToggle" checked>
+        </label>
+        <label class="setting">Vibration
+          <input class="toggle" type="checkbox" id="vibrationToggle">
+        </label>
+        <label class="setting">Keep screen awake
+          <input class="toggle" type="checkbox" id="wakeToggle">
+        </label>
+        <label class="setting">Dark mode
+          <input class="toggle" type="checkbox" id="darkToggle">
+        </label>
+      </div>
+
+      <div class="target-row">
+        <label>Target:</label>
+        <button class="target-chip" data-target="33">33</button>
+        <button class="target-chip" data-target="99">99</button>
+        <button class="target-chip" data-target="100">100</button>
+        <button class="target-chip" data-target="1000">1000</button>
+        <input class="custom-target" id="customTarget" type="number" min="1" placeholder="Custom">
+      </div>
+
+      <div class="progressbar">
+        <div class="progressfill" id="progressFill"></div>
+      </div>
+      <div class="small-row">
+        <span id="progressText">0 of 100 completed</span>
+        <span id="percent">0%</span>
+      </div>
+    </section>
+
+    <section class="dhikr-section">
+      <div class="section-head">
+        <h2>Choose Dhikr</h2>
+        <span>Tap to select</span>
+      </div>
+      <div class="dhikr-grid" id="dhikrGrid"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Saved Progress</h2>
+      <div class="history-list" id="historyList"></div>
+      <button class="target-chip" id="clearHistory">Clear history</button>
+    </section>
+
+    <div class="footer">
+      NoorTasbih · Made for peaceful remembrance
+    </div>
+  </main>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <div class="modal" id="saveModal">
+    <div class="modal-box">
+      <div class="modal-head">
+        <h2>Saved Dhikr Sessions</h2>
+        <button class="icon-btn" id="closeSessions">×</button>
+      </div>
+      <label for="sessionName">Name this session</label>
+      <div class="session-input">
+        <input id="sessionName" placeholder="e.g. Morning Dhikr">
+        <button class="target-chip" id="saveNamed">Save</button>
+      </div>
+      <div class="history-list" id="sessionManager"></div>
+    </div>
+  </div>
+
+  <audio id="beadDropAudio" preload="auto"
+    src="https://myislam.sfo3.digitaloceanspaces.com/assets/2024/11/BeadsDrop.mp3"></audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
