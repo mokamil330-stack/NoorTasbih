@@ -2,29 +2,31 @@
 const $ = id => document.getElementById(id);
 
 const dhikrs = [
-  {name:"SubhanAllah",arabic:"سُبْحَانَ اللّٰهِ",meaning:"Glory be to Allah",target:33},
-  {name:"Alhamdulillah",arabic:"الْحَمْدُ لِلّٰهِ",meaning:"All praise belongs to Allah",target:33},
-  {name:"Allahu Akbar",arabic:"اللّٰهُ أَكْبَرُ",meaning:"Allah is the Greatest",target:33},
-  {name:"Astaghfirullah",arabic:"أَسْتَغْفِرُ اللّٰهَ",meaning:"I seek Allah's forgiveness",target:100},
-  {name:"La ilaha illallah",arabic:"لَا إِلٰهَ إِلَّا اللّٰهُ",meaning:"There is no god but Allah",target:100},
-  {name:"SubhanAllahi wa bihamdihi",arabic:"سُبْحَانَ اللّٰهِ وَبِحَمْدِهِ",meaning:"Glory and praise be to Allah",target:100},
-  {name:"SubhanAllahil Azeem",arabic:"سُبْحَانَ اللّٰهِ الْعَظِيمِ",meaning:"Glory be to Allah, the Magnificent",target:100},
-  {name:"La hawla wa la quwwata illa billah",arabic:"لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللّٰهِ",meaning:"No power except through Allah",target:100},
-  {name:"Allahumma salli ala Muhammad",arabic:"اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ",meaning:"Send blessings upon Muhammad",target:100},
-  {name:"HasbunAllahu wa ni'mal wakeel",arabic:"حَسْبُنَا اللّٰهُ وَنِعْمَ الْوَكِيلُ",meaning:"Allah is sufficient for us",target:100},
-  {name:"Ya Rahman",arabic:"يَا رَحْمَٰنُ",meaning:"O Most Merciful",target:33},
-  {name:"Ya Raheem",arabic:"يَا رَحِيمُ",meaning:"O Especially Merciful",target:33},
-  {name:"Ya Kareem",arabic:"يَا كَرِيمُ",meaning:"O Most Generous",target:33},
-  {name:"Ya Latif",arabic:"يَا لَطِيفُ",meaning:"O Most Gentle",target:33},
-  {name:"Ya Fattah",arabic:"يَا فَتَّاحُ",meaning:"O Opener",target:33},
-  {name:"Ya Wahhab",arabic:"يَا وَهَّابُ",meaning:"O Bestower",target:33},
-  {name:"Ya Razzaq",arabic:"يَا رَزَّاقُ",meaning:"O Provider",target:33},
-  {name:"Ya Salam",arabic:"يَا سَلَامُ",meaning:"O Source of Peace",target:33},
-  {name:"Ya Ghaffar",arabic:"يَا غَفَّارُ",meaning:"O Great Forgiver",target:33},
-  {name:"Ya Wadud",arabic:"يَا وَدُودُ",meaning:"O Most Loving",target:33},
-  {name:"Ya Noor",arabic:"يَا نُورُ",meaning:"O Light",target:33},
-  {name:"Ya Ghani",arabic:"يَا غَنِيُّ",meaning:"O Self-Sufficient",target:33}
+  {name:"SubhanAllah", arabic:"سُبْحَانَ اللّٰهِ", meaning:"Glory be to Allah", target:33},
+  {name:"Alhamdulillah", arabic:"الْحَمْدُ لِلّٰهِ", meaning:"All praise belongs to Allah", target:33},
+  {name:"Allahu Akbar", arabic:"اللّٰهُ أَكْبَرُ", meaning:"Allah is the Greatest", target:33},
+  {name:"Astaghfirullah", arabic:"أَسْتَغْفِرُ اللّٰهَ", meaning:"I seek Allah's forgiveness", target:100},
+  {name:"La ilaha illallah", arabic:"لَا إِلٰهَ إِلَّا اللّٰهُ", meaning:"There is no god but Allah", target:100},
+  {name:"SubhanAllahi wa bihamdihi", arabic:"سُبْحَانَ اللّٰهِ وَبِحَمْدِهِ", meaning:"Glory and praise be to Allah", target:100},
+  {name:"SubhanAllahil Azeem", arabic:"سُبْحَانَ اللّٰهِ الْعَظِيمِ", meaning:"Glory be to Allah, the Magnificent", target:100},
+  {name:"La hawla wa la quwwata illa billah", arabic:"لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللّٰهِ", meaning:"No power except through Allah", target:100},
+  {name:"Durood", arabic:"اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ", meaning:"Send blessings upon Muhammad", target:100},
+  {name:"HasbunAllahu", arabic:"حَسْبُنَا اللّٰهُ وَنِعْمَ الْوَكِيلُ", meaning:"Allah is sufficient for us", target:100},
+  {name:"Ya Rahman", arabic:"يَا رَحْمَٰنُ", meaning:"O Most Merciful", target:33},
+  {name:"Ya Raheem", arabic:"يَا رَحِيمُ", meaning:"O Especially Merciful", target:33},
+  {name:"Ya Kareem", arabic:"يَا كَرِيمُ", meaning:"O Most Generous", target:33},
+  {name:"Ya Latif", arabic:"يَا لَطِيفُ", meaning:"O Most Gentle", target:33},
+  {name:"Ya Fattah", arabic:"يَا فَتَّاحُ", meaning:"O Opener", target:33},
+  {name:"Ya Wahhab", arabic:"يَا وَهَّابُ", meaning:"O Bestower", target:33},
+  {name:"Ya Razzaq", arabic:"يَا رَزَّاقُ", meaning:"O Provider", target:33},
+  {name:"Ya Salam", arabic:"يَا سَلَامُ", meaning:"O Source of Peace", target:33},
+  {name:"Ya Ghaffar", arabic:"يَا غَفَّارُ", meaning:"O Great Forgiver", target:33},
+  {name:"Ya Wadud", arabic:"يَا وَدُودُ", meaning:"O Most Loving", target:33},
+  {name:"Ya Noor", arabic:"يَا نُورُ", meaning:"O Light", target:33},
+  {name:"Ya Ghani", arabic:"يَا غَنِيُّ", meaning:"O Self-Sufficient", target:33}
 ];
+
+const STORAGE_KEY = "noortasbih-v2";
 
 let state = {
   count: 0,
@@ -37,119 +39,171 @@ let state = {
 };
 
 try {
-  const saved = JSON.parse(localStorage.getItem("noorTasbihState") || "null");
-  if (saved) state = {...state, ...saved};
-} catch (error) {}
+  const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null");
+  if (saved) state = { ...state, ...saved };
+} catch (_) {}
 
-let beadAudio = null;
-let wakeLock = null;
-let toastTimer = null;
+state.count = Math.max(0, Number(state.count) || 0);
+state.selected = Math.min(
+  dhikrs.length - 1,
+  Math.max(0, Number(state.selected) || 0)
+);
+state.target = Math.max(1, Number(state.target) || 33);
+state.history = Array.isArray(state.history) ? state.history : [];
+
+let toastTimer;
+let beadAudio = $("beadAudio");
+let lastMovedBead = -1;
+let resizeFrame = 0;
 
 function persist() {
   try {
-    localStorage.setItem("noorTasbihState", JSON.stringify(state));
-  } catch (error) {}
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  } catch (_) {
+    toast("Unable to save in this browser");
+  }
 }
 
 function toast(message) {
   $("toast").textContent = message;
   $("toast").classList.add("show");
+
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => $("toast").classList.remove("show"), 1900);
+  toastTimer = setTimeout(() => {
+    $("toast").classList.remove("show");
+  }, 1900);
 }
 
-function beadSound() {
-  if (!state.sound) return;
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g, char => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  })[char]);
+}
+
+/* Build a smooth fixed curve and place every bead on it. */
+function drawString(width, height) {
+  const path = $("stringPath");
+  const viewBoxWidth = 800;
+  const viewBoxHeight = 220;
+
+  const points = [];
+
+  for (let i = 0; i <= 100; i++) {
+    const t = i / 100;
+    const x = -30 + t * 860;
+    const y = 110 - Math.sin(t * Math.PI * 2) * 68;
+    points.push(`${i === 0 ? "M" : "L"} ${x.toFixed(2)} ${y.toFixed(2)}`);
+  }
+
+  path.setAttribute("d", points.join(" "));
+  path.setAttribute("stroke-width", "2.5");
+}
+
+function renderBeads(movedIndex = -1) {
+  const stage = $("beadStage");
+  const container = $("beads");
+  const width = stage.clientWidth;
+  const height = stage.clientHeight;
+
+  if (!width || !height) return;
+
+  drawString(width, height);
+
+  const beadCount = width < 420 ? 19 : 25;
+  const beadSize = Math.min(43, Math.max(29, width * 0.075));
+  const centerY = height / 2;
+  const amplitude = height * (68 / 220);
+  const containerWidth = width;
+
+  container.innerHTML = "";
+
+  for (let i = 0; i < beadCount; i++) {
+    /*
+      Every tap shifts the beads by one position along the curve.
+      The strand stays fixed; only the beads move.
+    */
+    const phase = (
+      i / (beadCount - 1) +
+      (state.count % beadCount) / (beadCount - 1)
+    );
+
+    const t = ((phase % 1) + 1) % 1;
+    const x = t * (containerWidth + beadSize) - beadSize / 2;
+    const y = centerY - Math.sin(t * Math.PI * 2) * amplitude;
+
+    const bead = document.createElement("span");
+    bead.className = "bead";
+    bead.style.width = beadSize + "px";
+    bead.style.height = beadSize + "px";
+    bead.style.left = x + "px";
+    bead.style.top = y + "px";
+
+    if (i === movedIndex) bead.classList.add("moving");
+
+    container.appendChild(bead);
+  }
+}
+
+function playBeadSound() {
+  if (!state.sound || !beadAudio) return;
 
   try {
-    beadAudio = beadAudio || $("beadDropAudio");
-    if (!beadAudio) return;
-
     beadAudio.pause();
     beadAudio.currentTime = 0;
 
-    const playPromise = beadAudio.play();
-    if (playPromise && playPromise.catch) {
-      playPromise.catch(() => {});
-    }
-  } catch (error) {}
+    const result = beadAudio.play();
+    if (result && result.catch) result.catch(() => {});
+  } catch (_) {}
 }
 
-function renderDhikr() {
-  $("dhikrGrid").innerHTML = dhikrs.map((dhikr, index) => `
+function renderDhikrs() {
+  $("dhikrList").innerHTML = dhikrs.map((item, index) => `
     <button class="dhikr-card ${index === state.selected ? "active" : ""}"
-      data-index="${index}">
-      <div class="num">${String(index + 1).padStart(2, "0")}</div>
-      <div class="arabic">${dhikr.arabic}</div>
-      <div class="dhikr-name">${dhikr.name}</div>
-      <div class="dhikr-meaning">${dhikr.meaning}</div>
+      data-dhikr="${index}">
+      <div class="dhikr-num">${String(index + 1).padStart(2, "0")}</div>
+      <div class="dhikr-arabic">${item.arabic}</div>
+      <div class="dhikr-name">${item.name}</div>
+      <div class="dhikr-meaning">${item.meaning}</div>
     </button>
   `).join("");
 
-  $("dhikrGrid").querySelectorAll("[data-index]").forEach(button => {
+  $("dhikrList").querySelectorAll("[data-dhikr]").forEach(button => {
     button.addEventListener("click", () => {
-      state.selected = Number(button.dataset.index);
+      state.selected = Number(button.dataset.dhikr);
       state.count = 0;
-      state.target = dhikrs[state.selected].target || 33;
+      state.target = dhikrs[state.selected].target;
       $("customTarget").value = "";
-      renderDhikr();
+
+      renderDhikrs();
       render();
       persist();
-      window.scrollTo({top: 0, behavior: "smooth"});
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
     });
   });
 }
 
-/* Moving beads on the strand */
-function renderBeads(showDrop = false) {
-  const wrap = $("beads");
-  wrap.innerHTML = "";
-
-  const total = 17;
-  const width = $("beadTrack").clientWidth || 360;
-  const height = $("beadTrack").clientHeight || 220;
-
-  for (let i = 0; i < total; i++) {
-    const bead = document.createElement("span");
-    bead.className = "bead";
-
-    const phase = (
-      (i / total * 100) +
-      (state.count % total) * (100 / total)
-    ) % 100;
-
-    const x = (phase / 100) * (width + 55) - 28;
-    const y = height * 0.50 +
-      Math.sin((phase / 100) * Math.PI * 2) * height * 0.31;
-
-    bead.style.left = x + "px";
-    bead.style.top = (y - 17) + "px";
-    bead.style.zIndex =
-      Math.sin((phase / 100) * Math.PI * 2) > 0 ? "1" : "0";
-
-    wrap.appendChild(bead);
-  }
-
-  if (showDrop) {
-    const falling = document.createElement("span");
-    falling.className = "falling-bead";
-    falling.setAttribute("aria-hidden", "true");
-    falling.style.left = (38 + Math.random() * 24) + "%";
-    wrap.appendChild(falling);
-
-    falling.addEventListener("animationend", () => {
-      falling.remove();
-    }, {once: true});
-  }
-}
-
 function render() {
   $("count").textContent = state.count.toLocaleString();
+  $("targetLabel").textContent = state.target.toLocaleString();
+  $("progressLabel").textContent =
+    `${state.count.toLocaleString()} / ${state.target.toLocaleString()}`;
+
+  const percentage = Math.min(
+    100,
+    state.count / Math.max(1, state.target) * 100
+  );
+
+  $("progressFill").style.width = percentage + "%";
 
   $("soundToggle").checked = state.sound;
   $("vibrationToggle").checked = state.vibration;
   $("darkToggle").checked = state.dark;
-  $("soundTop").textContent = state.sound ? "♫" : "♪";
+  $("soundBtn").textContent = state.sound ? "♫" : "♪";
 
   document.body.classList.toggle("dark", state.dark);
 
@@ -160,46 +214,46 @@ function render() {
     );
   });
 
-  const percent = Math.min(
-    100,
-    Math.round(state.count / Math.max(1, state.target) * 100)
-  );
-
-  $("progressFill").style.width = percent + "%";
-  $("progressText").textContent =
-    `${state.count.toLocaleString()} of ${state.target.toLocaleString()} completed`;
-  $("percent").textContent = percent + "%";
-
   renderBeads();
 }
 
-function countBy(amount) {
-  state.count = Math.max(0, state.count + amount);
+/* Increase count: animate the beads along the fixed curve. */
+function increment() {
+  state.count += 1;
 
-  if (amount > 0) {
-    beadSound();
+  playBeadSound();
 
-    if (state.vibration && navigator.vibrate) {
-      navigator.vibrate(15);
-    }
-
-    if (state.count === state.target) {
-      toast("Target completed — Alhamdulillah!");
-    }
+  if (state.vibration && navigator.vibrate) {
+    navigator.vibrate(15);
   }
 
   render();
-  if (amount > 0) renderBeads(true);
+  persist();
+
+  if (state.count === state.target) {
+    toast("Target complete — Alhamdulillah!");
+  }
+}
+
+function decrement() {
+  if (state.count <= 0) {
+    toast("Counter is already at zero");
+    return;
+  }
+
+  state.count -= 1;
+  render();
   persist();
 }
 
-$("plus").addEventListener("click", () => countBy(1));
-$("minus").addEventListener("click", () => countBy(-1));
+$("plus").addEventListener("click", increment);
+$("minus").addEventListener("click", decrement);
 
 $("reset").addEventListener("click", () => {
-  if (state.count > 0 && !confirm("Reset the current Dhikr count to zero?")) {
-    return;
-  }
+  if (
+    state.count > 0 &&
+    !confirm("Reset this Dhikr counter to zero?")
+  ) return;
 
   state.count = 0;
   render();
@@ -209,27 +263,15 @@ $("reset").addEventListener("click", () => {
 
 $("soundToggle").addEventListener("change", event => {
   state.sound = event.target.checked;
-  persist();
   render();
+  persist();
 });
 
-$("soundTop").addEventListener("click", () => {
+$("soundBtn").addEventListener("click", () => {
   state.sound = !state.sound;
-  persist();
   render();
-  toast(state.sound ? "Bead sound on" : "Bead sound off");
-});
-
-$("darkToggle").addEventListener("change", event => {
-  state.dark = event.target.checked;
   persist();
-  render();
-});
-
-$("themeBtn").addEventListener("click", () => {
-  state.dark = !state.dark;
-  persist();
-  render();
+  toast(state.sound ? "Bead sound enabled" : "Bead sound disabled");
 });
 
 $("vibrationToggle").addEventListener("change", event => {
@@ -237,43 +279,56 @@ $("vibrationToggle").addEventListener("change", event => {
   persist();
 
   if (state.vibration && navigator.vibrate) {
-    navigator.vibrate(20);
+    navigator.vibrate(15);
   }
+});
+
+$("darkToggle").addEventListener("change", event => {
+  state.dark = event.target.checked;
+  render();
+  persist();
 });
 
 document.querySelectorAll("[data-target]").forEach(button => {
   button.addEventListener("click", () => {
     state.target = Number(button.dataset.target);
     $("customTarget").value = "";
-    persist();
     render();
+    persist();
   });
 });
 
 $("customTarget").addEventListener("change", event => {
   const target = Math.floor(Number(event.target.value));
 
-  if (target > 0 && target <= 1000000) {
-    state.target = target;
-    persist();
-    render();
-  } else {
-    toast("Enter a target from 1 to 1,000,000");
+  if (target < 1 || target > 1000000 || !Number.isFinite(target)) {
+    toast("Enter a target between 1 and 1,000,000");
+    event.target.value = "";
+    return;
   }
+
+  state.target = target;
+  render();
+  persist();
 });
 
-function escapeHtml(value) {
-  return String(value).replace(/[&<>"']/g, char => ({
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&#39;"
-  })[char]);
+function saveSession(name) {
+  state.history.unshift({
+    name: name || dhikrs[state.selected].name,
+    count: state.count,
+    selected: state.selected,
+    target: state.target,
+    date: new Date().toLocaleString()
+  });
+
+  state.history = state.history.slice(0, 50);
+  persist();
+  renderSaved();
+  renderSessions();
 }
 
-function renderHistory() {
-  const list = $("historyList");
+function renderSaved() {
+  const list = $("savedList");
 
   if (!state.history.length) {
     list.innerHTML = '<div class="empty">No saved progress yet.</div>';
@@ -281,48 +336,52 @@ function renderHistory() {
   }
 
   list.innerHTML = state.history.map(session => `
-    <div class="history-item">
-      <span>
-        <strong>${escapeHtml(session.name)}</strong><br>
-        <small>${escapeHtml(session.date)}</small>
-      </span>
-      <strong>${Number(session.count).toLocaleString()} counts</strong>
+    <div class="saved-item">
+      <div>
+        <strong>${escapeHTML(session.name)}</strong>
+        <small>${escapeHTML(session.date || "")}</small>
+      </div>
+      <span>${Number(session.count || 0).toLocaleString()}</span>
     </div>
   `).join("");
 }
 
-$("save").addEventListener("click", () => {
-  state.history.unshift({
-    name: dhikrs[state.selected].name,
-    count: state.count,
-    selected: state.selected,
-    dhikr: dhikrs[state.selected].name,
-    date: new Date().toLocaleString()
-  });
-
-  state.history = state.history.slice(0, 50);
-  persist();
-  renderHistory();
-
-  $("save").textContent = "PROGRESS SAVED ✓";
+$("saveBtn").addEventListener("click", () => {
+  saveSession(dhikrs[state.selected].name);
   toast("Progress saved on this device");
-
-  setTimeout(() => {
-    $("save").textContent = "SAVE PROGRESS";
-  }, 1500);
 });
 
-function openSessionModal() {
-  $("saveModal").classList.add("open");
-  renderSessionManager();
+function openModal() {
+  $("modal").classList.add("open");
+  renderSessions();
 }
 
-function closeSessionModal() {
-  $("saveModal").classList.remove("open");
+function closeModal() {
+  $("modal").classList.remove("open");
 }
 
-function renderSessionManager() {
-  const list = $("sessionManager");
+$("loadBtn").addEventListener("click", openModal);
+$("closeModal").addEventListener("click", closeModal);
+
+$("modal").addEventListener("click", event => {
+  if (event.target === $("modal")) closeModal();
+});
+
+$("saveNamed").addEventListener("click", () => {
+  const name = $("sessionName").value.trim();
+
+  if (!name) {
+    toast("Enter a session name first");
+    return;
+  }
+
+  saveSession(name);
+  $("sessionName").value = "";
+  toast("Named session saved");
+});
+
+function renderSessions() {
+  const list = $("sessionList");
 
   if (!state.history.length) {
     list.innerHTML = '<div class="empty">No saved sessions yet.</div>';
@@ -330,33 +389,35 @@ function renderSessionManager() {
   }
 
   list.innerHTML = state.history.map((session, index) => `
-    <div class="history-item">
-      <span>
-        <strong>${escapeHtml(session.name || session.dhikr || "Dhikr")}</strong><br>
-        <small>${escapeHtml(session.date || "")}</small><br>
-        ${Number(session.count || 0).toLocaleString()} counts
-      </span>
-      <span>
-        <button class="target-chip" data-load="${index}">Load</button>
-        <button class="target-chip" data-delete="${index}">×</button>
-      </span>
+    <div class="saved-item">
+      <div>
+        <strong>${escapeHTML(session.name)}</strong>
+        <small>${escapeHTML(session.date || "")}</small><br>
+        <small>${Number(session.count || 0).toLocaleString()} counts</small>
+      </div>
+      <div>
+        <button data-load="${index}">Load</button>
+        <button data-delete="${index}">×</button>
+      </div>
     </div>
   `).join("");
 
   list.querySelectorAll("[data-load]").forEach(button => {
     button.addEventListener("click", () => {
       const session = state.history[Number(button.dataset.load)];
-      state.count = Number(session.count || 0);
 
-      if (session.selected != null) {
-        state.selected = Number(session.selected);
-      }
+      state.count = Math.max(0, Number(session.count) || 0);
+      state.selected = Math.max(
+        0,
+        Math.min(dhikrs.length - 1, Number(session.selected) || 0)
+      );
+      state.target = Math.max(1, Number(session.target) || 33);
 
-      state.target = dhikrs[state.selected].target || 33;
-      renderDhikr();
+      $("customTarget").value = "";
+      renderDhikrs();
       render();
       persist();
-      closeSessionModal();
+      closeModal();
       toast("Saved session loaded");
     });
   });
@@ -365,95 +426,33 @@ function renderSessionManager() {
     button.addEventListener("click", () => {
       state.history.splice(Number(button.dataset.delete), 1);
       persist();
-      renderHistory();
-      renderSessionManager();
+      renderSaved();
+      renderSessions();
+      toast("Session deleted");
     });
   });
 }
 
-$("openSessions").addEventListener("click", openSessionModal);
-$("closeSessions").addEventListener("click", closeSessionModal);
-
-$("saveModal").addEventListener("click", event => {
-  if (event.target === $("saveModal")) closeSessionModal();
-});
-
-$("saveNamed").addEventListener("click", () => {
-  const name = $("sessionName").value.trim();
-
-  if (!name) {
-    toast("Please enter a session name");
-    return;
-  }
-
-  state.history.unshift({
-    name,
-    count: state.count,
-    selected: state.selected,
-    dhikr: dhikrs[state.selected].name,
-    date: new Date().toLocaleString()
-  });
-
-  state.history = state.history.slice(0, 50);
-  persist();
-  renderHistory();
-  renderSessionManager();
-
-  $("sessionName").value = "";
-  toast("Named session saved");
-});
-
-$("clearHistory").addEventListener("click", () => {
+$("clearBtn").addEventListener("click", () => {
   if (!state.history.length) {
-    toast("No saved history");
+    toast("No saved progress");
     return;
   }
 
-  if (confirm("Clear all saved sessions?")) {
+  if (confirm("Delete all saved progress?")) {
     state.history = [];
     persist();
-    renderHistory();
-    renderSessionManager();
-    toast("History cleared");
+    renderSaved();
+    renderSessions();
+    toast("Saved progress cleared");
   }
 });
 
-$("wakeToggle").addEventListener("change", async event => {
-  if (event.target.checked) {
-    try {
-      if ("wakeLock" in navigator) {
-        wakeLock = await navigator.wakeLock.request("screen");
-        toast("Screen wake lock enabled");
-      } else {
-        event.target.checked = false;
-        toast("Screen wake lock is not supported");
-      }
-    } catch (error) {
-      event.target.checked = false;
-      toast("Screen wake lock could not be enabled");
-    }
-  } else if (wakeLock) {
-    try {
-      await wakeLock.release();
-    } catch (error) {}
-    wakeLock = null;
-  }
+window.addEventListener("resize", () => {
+  cancelAnimationFrame(resizeFrame);
+  resizeFrame = requestAnimationFrame(() => renderBeads());
 });
 
-document.addEventListener("visibilitychange", async () => {
-  if (
-    document.visibilityState === "visible" &&
-    $("wakeToggle").checked &&
-    "wakeLock" in navigator
-  ) {
-    try {
-      wakeLock = await navigator.wakeLock.request("screen");
-    } catch (error) {}
-  }
-});
-
-window.addEventListener("resize", () => renderBeads());
-
-renderDhikr();
+renderDhikrs();
 render();
-renderHistory();
+renderSaved();
