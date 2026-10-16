@@ -1,124 +1,114 @@
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#ffffff">
-  <meta name="description" content="NoorTasbih online digital tasbih counter.">
   <title>NoorTasbih — Online Tasbih Counter</title>
+  <meta name="description" content="Count your daily Dhikr with NoorTasbih.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header class="topbar">
-    <div class="brand">
-      NOOR TASBIH
+    <a class="brand" href="#">
+      <span>NOOR<span class="brand-light">TASBIH</span></span>
       <small>REMEMBER ALLAH ALWAYS</small>
-    </div>
-    <div class="top-actions">
-      <button class="icon-btn" id="soundTop" aria-label="Toggle sound">♫</button>
-      <button class="icon-btn" id="themeBtn" aria-label="Toggle dark mode">☾</button>
-    </div>
+    </a>
+    <button class="icon-btn" id="soundBtn" aria-label="Toggle sound">♫</button>
   </header>
 
   <main>
-    <section class="hero">
-      <div class="eyebrow">DIGITAL TASBIH COUNTER</div>
-      <h1>Tasbih Counter Online</h1>
-      <p>Count your Dhikr, one bead at a time.</p>
+    <section class="intro">
+      <span class="eyebrow">YOUR DIGITAL TASBIH</span>
+      <h1>Tasbih Counter</h1>
+      <p>Remember Allah, one bead at a time.</p>
     </section>
 
-    <section class="counter-wrap">
-      <div class="bead-track" id="beadTrack">
-        <div class="string"></div>
-        <div id="beads"></div>
-        <div class="count-number" id="count" aria-live="polite">0</div>
+    <section class="counter">
+      <div class="bead-stage" id="beadStage">
+        <svg class="string-svg" viewBox="0 0 800 220" preserveAspectRatio="none"
+             aria-hidden="true">
+          <path id="stringPath"
+            d="M -20 110 C 110 5, 210 5, 330 110 S 550 215, 820 90"
+            fill="none" stroke="#555" stroke-width="2.5"/>
+        </svg>
+        <div class="beads" id="beads"></div>
+        <div class="count" id="count" aria-live="polite">0</div>
       </div>
 
       <div class="controls">
-        <button class="round-btn" id="minus" aria-label="Decrease count">−</button>
+        <button class="circle-btn" id="minus" aria-label="Decrease count">−</button>
         <button class="reset-btn" id="reset">RESET</button>
-        <button class="round-btn" id="plus" aria-label="Increase count">+</button>
+        <button class="circle-btn primary" id="plus" aria-label="Increase count">+</button>
+      </div>
+
+      <div class="target-line">
+        <span>Target: <strong id="targetLabel">33</strong></span>
+        <span id="progressLabel">0 / 33</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill"></div>
       </div>
     </section>
 
-    <div class="save-row">
-      <button class="save-btn" id="save">SAVE PROGRESS</button>
-      <button class="save-btn" id="openSessions">LOAD SAVED</button>
-    </div>
+    <section class="action-row">
+      <button class="action-btn" id="saveBtn">SAVE PROGRESS</button>
+      <button class="action-btn" id="loadBtn">SAVED SESSIONS</button>
+    </section>
 
     <section class="panel">
-      <h2>Counter Settings</h2>
-      <div class="settings-grid">
-        <label class="setting">Bead sound
-          <input class="toggle" type="checkbox" id="soundToggle" checked>
-        </label>
-        <label class="setting">Vibration
-          <input class="toggle" type="checkbox" id="vibrationToggle">
-        </label>
-        <label class="setting">Keep screen awake
-          <input class="toggle" type="checkbox" id="wakeToggle">
-        </label>
-        <label class="setting">Dark mode
-          <input class="toggle" type="checkbox" id="darkToggle">
-        </label>
-      </div>
-
-      <div class="target-row">
-        <label>Target:</label>
-        <button class="target-chip" data-target="33">33</button>
-        <button class="target-chip" data-target="99">99</button>
-        <button class="target-chip" data-target="100">100</button>
-        <button class="target-chip" data-target="1000">1000</button>
-        <input class="custom-target" id="customTarget" type="number" min="1" placeholder="Custom">
-      </div>
-
-      <div class="progressbar">
-        <div class="progressfill" id="progressFill"></div>
-      </div>
-      <div class="small-row">
-        <span id="progressText">0 of 100 completed</span>
-        <span id="percent">0%</span>
-      </div>
-    </section>
-
-    <section class="dhikr-section">
-      <div class="section-head">
+      <div class="panel-heading">
         <h2>Choose Dhikr</h2>
         <span>Tap to select</span>
       </div>
-      <div class="dhikr-grid" id="dhikrGrid"></div>
+      <div class="dhikr-list" id="dhikrList"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Settings</h2>
+      <div class="settings">
+        <label>Bead sound <input type="checkbox" id="soundToggle" checked></label>
+        <label>Vibration <input type="checkbox" id="vibrationToggle"></label>
+        <label>Dark mode <input type="checkbox" id="darkToggle"></label>
+      </div>
+      <div class="target-options">
+        <span>Set target</span>
+        <button data-target="33">33</button>
+        <button data-target="99">99</button>
+        <button data-target="100">100</button>
+        <button data-target="1000">1000</button>
+        <input id="customTarget" type="number" min="1" max="1000000"
+               placeholder="Custom">
+      </div>
     </section>
 
     <section class="panel">
       <h2>Saved Progress</h2>
-      <div class="history-list" id="historyList"></div>
-      <button class="target-chip" id="clearHistory">Clear history</button>
+      <div id="savedList" class="saved-list"></div>
+      <button class="text-btn" id="clearBtn">Clear saved progress</button>
     </section>
 
-    <div class="footer">
-      NoorTasbih · Made for peaceful remembrance
-    </div>
+    <footer>NoorTasbih · A moment of remembrance</footer>
   </main>
 
   <div class="toast" id="toast" role="status"></div>
 
-  <div class="modal" id="saveModal">
+  <div class="modal" id="modal">
     <div class="modal-box">
-      <div class="modal-head">
-        <h2>Saved Dhikr Sessions</h2>
-        <button class="icon-btn" id="closeSessions">×</button>
+      <div class="modal-heading">
+        <h2>Saved Sessions</h2>
+        <button id="closeModal" class="icon-btn" aria-label="Close">×</button>
       </div>
-      <label for="sessionName">Name this session</label>
-      <div class="session-input">
-        <input id="sessionName" placeholder="e.g. Morning Dhikr">
-        <button class="target-chip" id="saveNamed">Save</button>
+      <div class="save-name">
+        <input id="sessionName" placeholder="Session name">
+        <button id="saveNamed">Save</button>
       </div>
-      <div class="history-list" id="sessionManager"></div>
+      <div id="sessionList" class="saved-list"></div>
     </div>
   </div>
 
-  <audio id="beadDropAudio" preload="auto"
+  <audio id="beadAudio" preload="auto"
     src="https://myislam.sfo3.digitaloceanspaces.com/assets/2024/11/BeadsDrop.mp3"></audio>
 
   <script src="script.js"></script>
