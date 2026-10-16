@@ -1,17 +1,21 @@
 
 :root {
-  --bg: #fff;
-  --surface: #fff;
+  --bg: #ffffff;
+  --surface: #ffffff;
   --text: #151515;
   --muted: #858585;
   --border: #e8ecec;
   --green: #139b62;
   --soft-green: #eaf8f1;
-  --shadow: 0 5px 22px #00000012;
+  --shadow: 0 5px 22px rgba(0, 0, 0, 0.09);
 }
 
 * {
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -20,9 +24,11 @@ body {
   color: var(--text);
   font-family: Arial, Helvetica, sans-serif;
   -webkit-tap-highlight-color: transparent;
+  transition: background 0.25s, color 0.25s;
 }
 
-button, input {
+button,
+input {
   font: inherit;
 }
 
@@ -30,6 +36,8 @@ button {
   cursor: pointer;
   touch-action: manipulation;
 }
+
+/* HEADER */
 
 .topbar {
   height: 68px;
@@ -40,7 +48,7 @@ button {
   border-bottom: 1px solid var(--border);
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 20;
   background: var(--surface);
 }
 
@@ -49,7 +57,7 @@ button {
   text-decoration: none;
   font-size: 19px;
   font-weight: 900;
-  letter-spacing: .7px;
+  letter-spacing: 0.7px;
 }
 
 .brand-light {
@@ -73,9 +81,11 @@ button {
   padding: 7px 10px;
 }
 
+/* MAIN LAYOUT */
+
 main {
   width: min(100% - 32px, 760px);
-  margin: auto;
+  margin: 0 auto;
 }
 
 .intro {
@@ -102,87 +112,152 @@ main {
   font-size: 14px;
 }
 
+/* TASBIH COUNTER */
+
 .counter {
   padding-top: 14px;
 }
 
 .bead-stage {
-  position: relative;
+  position: relative !important;
+  display: block !important;
   width: calc(100% + 32px);
   height: clamp(180px, 48vw, 235px);
+  min-height: 180px;
   margin-left: -16px;
   overflow: hidden;
   isolation: isolate;
 }
 
+/* FIXED CURVED STRING */
+
 .string-svg {
   position: absolute;
   inset: 0;
+  display: block;
   width: 100%;
   height: 100%;
   overflow: visible;
+  z-index: 1;
+  pointer-events: none;
 }
+
+.string-svg path {
+  fill: none;
+  stroke: #555555;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+
+/* BEAD CONTAINER */
 
 .beads {
-  position: absolute;
+  position: absolute !important;
   inset: 0;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  z-index: 2;
+  overflow: visible;
+  pointer-events: none;
 }
 
-.bead {
-  position: absolute;
+/* BLACK TASBIH BEADS */
+
+.beads .bead {
+  position: absolute !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+
   width: clamp(29px, 7.5vw, 43px);
   height: clamp(29px, 7.5vw, 43px);
+
   border-radius: 50%;
+  border: 1px solid #484848;
+
   background: radial-gradient(
     circle at 28% 22%,
-    #707070 0%,
-    #303030 18%,
-    #080808 53%,
-    #000 69%,
-    #484848 86%,
-    #111 100%
+    #888888 0%,
+    #555555 10%,
+    #252525 29%,
+    #050505 59%,
+    #000000 70%,
+    #333333 86%,
+    #101010 100%
   );
-  border: 1px solid #333;
-  box-shadow: inset 0 1px 4px #ffffff45, 0 2px 3px #0002;
+
+  box-shadow:
+    inset 0 1px 4px rgba(255, 255, 255, 0.35),
+    inset -3px -4px 6px rgba(0, 0, 0, 0.85),
+    0 2px 5px rgba(0, 0, 0, 0.25);
+
   transform: translate(-50%, -50%);
-  will-change: left, top;
+  transform-origin: center center;
+
   transition:
-    left .42s cubic-bezier(.2,.7,.25,1),
-    top .42s cubic-bezier(.2,.7,.25,1);
+    left 0.42s cubic-bezier(0.2, 0.7, 0.25, 1),
+    top 0.42s cubic-bezier(0.2, 0.7, 0.25, 1);
+
+  will-change: left, top;
 }
 
-.bead::after {
+/* GOLDEN HOLE / CENTER DETAIL */
+
+.beads .bead::after {
   content: "";
   position: absolute;
   width: 5px;
   height: 5px;
-  border-radius: 50%;
   top: 50%;
   left: 50%;
+  border-radius: 50%;
+
+  background: radial-gradient(
+    circle,
+    #e3d3a0 0%,
+    #b9a46e 55%,
+    #75623b 100%
+  );
+
+  box-shadow: 0 0 3px rgba(210, 190, 130, 0.4);
   transform: translate(-50%, -50%);
-  background: #b9a46e;
-  box-shadow: 0 0 3px #e4d19a;
 }
 
-.bead.moving {
-  z-index: 3;
-  box-shadow: inset 0 1px 4px #ffffff55, 0 5px 12px #0004;
+/* BEAD CURRENTLY MOVING */
+
+.beads .bead.moving {
+  z-index: 5 !important;
+  box-shadow:
+    inset 0 1px 4px rgba(255, 255, 255, 0.45),
+    inset -3px -4px 6px rgba(0, 0, 0, 0.8),
+    0 5px 12px rgba(0, 0, 0, 0.35);
 }
+
+/* LARGE COUNTER NUMBER */
 
 .count {
   position: absolute;
   z-index: 4;
   left: 50%;
   top: 50%;
+
   transform: translate(-50%, -50%);
+
   font-size: clamp(95px, 23vw, 145px);
   font-weight: 300;
   line-height: 1;
   letter-spacing: -5px;
   font-variant-numeric: tabular-nums;
+
   color: var(--green);
   pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
 }
+
+/* COUNTER BUTTONS */
 
 .controls {
   display: flex;
@@ -190,25 +265,33 @@ main {
   align-items: center;
   gap: clamp(12px, 4vw, 28px);
   margin-top: 1px;
+  position: relative;
+  z-index: 5;
 }
 
 .circle-btn,
 .reset-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   background: var(--surface);
   color: var(--text);
   border: 1px solid #f0f1f1;
   box-shadow: var(--shadow);
-  transition: transform .12s, box-shadow .12s;
+
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.12s ease;
 }
 
 .circle-btn {
+  flex: 0 0 auto;
   width: clamp(74px, 19vw, 108px);
   height: clamp(74px, 19vw, 108px);
   border-radius: 50%;
   font-size: 43px;
   font-weight: 400;
-  display: grid;
-  place-items: center;
 }
 
 .circle-btn.primary {
@@ -221,18 +304,22 @@ main {
   padding: 0 clamp(16px, 5vw, 34px);
   font-size: clamp(24px, 6vw, 38px);
   font-weight: 800;
-  letter-spacing: -.5px;
+  letter-spacing: -0.5px;
 }
 
 .circle-btn:active,
 .reset-btn:active {
-  transform: scale(.95);
-  box-shadow: 0 2px 8px #00000010;
+  transform: scale(0.95);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
+
+/* TARGET AND PROGRESS */
 
 .target-line {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  gap: 12px;
   margin: 24px 0 8px;
   color: var(--muted);
   font-size: 12px;
@@ -254,8 +341,10 @@ main {
   width: 0;
   background: var(--green);
   border-radius: inherit;
-  transition: width .25s;
+  transition: width 0.25s ease;
 }
+
+/* SAVE / LOAD BUTTONS */
 
 .action-row {
   display: flex;
@@ -273,14 +362,22 @@ main {
   padding: 13px 17px;
   font-size: 12px;
   font-weight: 800;
-  letter-spacing: .4px;
+  letter-spacing: 0.4px;
+  transition: transform 0.15s;
 }
+
+.action-btn:active {
+  transform: scale(0.97);
+}
+
+/* PANELS */
 
 .panel {
   border: 1px solid var(--border);
   border-radius: 13px;
   padding: 16px;
   margin-top: 17px;
+  background: var(--surface);
 }
 
 .panel h2 {
@@ -305,6 +402,8 @@ main {
   margin-bottom: 14px;
 }
 
+/* DHIKR CARDS */
+
 .dhikr-list {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -312,13 +411,27 @@ main {
 }
 
 .dhikr-card {
+  display: block;
   min-width: 0;
   padding: 12px 8px;
+
   border: 1px solid var(--border);
   border-radius: 10px;
+
   background: var(--surface);
   color: var(--text);
+
   text-align: center;
+  overflow-wrap: anywhere;
+
+  transition:
+    border-color 0.2s,
+    background 0.2s,
+    transform 0.15s;
+}
+
+.dhikr-card:active {
+  transform: scale(0.98);
 }
 
 .dhikr-card.active {
@@ -353,6 +466,8 @@ main {
   margin-top: 5px;
 }
 
+/* SETTINGS */
+
 .settings {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -371,7 +486,10 @@ main {
   accent-color: var(--green);
   width: 18px;
   height: 18px;
+  cursor: pointer;
 }
+
+/* TARGET SELECTORS */
 
 .target-options {
   display: flex;
@@ -401,7 +519,7 @@ main {
 
 .target-options button.active {
   background: var(--green);
-  color: white;
+  color: #ffffff;
   border-color: var(--green);
 }
 
@@ -409,6 +527,8 @@ main {
   width: 90px;
   min-width: 0;
 }
+
+/* SAVED PROGRESS */
 
 .saved-list {
   display: grid;
@@ -422,8 +542,10 @@ main {
   gap: 8px;
   padding: 11px;
   border-radius: 8px;
-  background: color-mix(in srgb, var(--surface), #888 5%);
+  background: #f5f8f7;
+  color: var(--text);
   font-size: 12px;
+  overflow-wrap: anywhere;
 }
 
 .saved-item strong {
@@ -458,6 +580,8 @@ main {
   padding: 8px 0;
 }
 
+/* FOOTER */
+
 footer {
   text-align: center;
   color: var(--muted);
@@ -465,22 +589,31 @@ footer {
   padding: 28px 0;
 }
 
+/* TOAST MESSAGE */
+
 .toast {
   position: fixed;
   z-index: 90;
   left: 50%;
   bottom: 22px;
+
   transform: translate(-50%, 15px);
   opacity: 0;
   pointer-events: none;
+
   background: #17251f;
-  color: white;
+  color: #ffffff;
+
   border-radius: 25px;
   padding: 12px 18px;
+
   max-width: 90%;
   font-size: 13px;
   text-align: center;
-  transition: .2s;
+
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
 }
 
 .toast.show {
@@ -488,13 +621,17 @@ footer {
   transform: translate(-50%, 0);
 }
 
+/* SAVED SESSIONS MODAL */
+
 .modal {
   display: none;
   position: fixed;
   z-index: 80;
   inset: 0;
+
   padding: 18px;
-  background: #0008;
+  background: rgba(0, 0, 0, 0.55);
+
   align-items: center;
   justify-content: center;
 }
@@ -507,10 +644,13 @@ footer {
   width: min(100%, 460px);
   max-height: 80vh;
   overflow-y: auto;
+
   background: var(--surface);
   color: var(--text);
+
   padding: 20px;
   border-radius: 14px;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.2);
 }
 
 .modal-heading {
@@ -533,16 +673,20 @@ footer {
   flex: 1;
   min-width: 0;
   padding: 10px;
+
   border: 1px solid var(--border);
   border-radius: 7px;
+
   background: var(--surface);
   color: var(--text);
 }
 
 .save-name button {
   background: var(--green);
-  color: white;
+  color: #ffffff;
 }
+
+/* DARK MODE */
 
 body.dark {
   --bg: #101615;
@@ -551,81 +695,113 @@ body.dark {
   --muted: #a0aaa6;
   --border: #2b3733;
   --soft-green: #1a3328;
-  --shadow: 0 5px 22px #0004;
+  --shadow: 0 5px 22px rgba(0, 0, 0, 0.35);
+}
+
+body.dark .beads .bead {
+  border-color: #444444;
+}
+
+body.dark .string-svg path {
+  stroke: #8c9692;
 }
 
 body.dark .progress-track {
   background: #2b3733;
 }
 
+body.dark .saved-item {
+  background: #202b28;
+}
+
+/* TABLET AND DESKTOP */
+
 @media (min-width: 620px) {
-  .dhikr-list {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+  main {
+    width: min(100% - 48px, 760px);
   }
 
   .bead-stage {
+    width: calc(100% + 48px);
+    margin-left: -24px;
     height: 235px;
   }
+
+  .dhikr-list {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* SMALL MOBILE */
+
+@media (max-width: 360px) {
+  main {
+    width: calc(100% - 22px);
+  }
+
+  .topbar {
+    padding: 0 12px;
+  }
+
+  .brand {
+    font-size: 17px;
+  }
+
+  .bead-stage {
+    width: calc(100% + 22px);
+    margin-left: -11px;
+    height: 180px;
+  }
+
+  .controls {
+    gap: 9px;
+  }
+
+  .circle-btn {
+    width: 70px;
+    height: 70px;
+    font-size: 36px;
+  }
+
+  .reset-btn {
+    height: 70px;
+    padding: 0 14px;
+    font-size: 23px;
+    border-radius: 15px;
+  }
+
+  .count {
+    font-size: 94px;
+  }
+
+  .panel {
+    padding: 12px;
+  }
+
+  .dhikr-arabic {
+    font-size: 21px;
+  }
+
+  .action-btn {
+    padding: 12px;
+    font-size: 11px;
+  }
+}
+
+/* ACCESSIBILITY */
+
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 3px;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .bead,
-  .progress-fill,
-  .toast,
-  button {
-    transition: none !important;
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
   }
-}
-
-
-/* FIX: Make Tasbih beads clearly visible */
-.bead-stage {
-  position: relative !important;
-  display: block !important;
-  min-height: 200px;
-  overflow: hidden;
-  isolation: isolate;
-}
-
-.string-svg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  pointer-events: none;
-}
-
-.beads {
-  position: absolute;
-  inset: 0;
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.beads .bead {
-  display: block !important;
-  position: absolute !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  z-index: 2;
-  border-radius: 50%;
-  background: radial-gradient(
-    circle at 28% 22%,
-    #888 0%,
-    #333 22%,
-    #050505 65%,
-    #444 85%,
-    #111 100%
-  ) !important;
-  border: 1px solid #555;
-  box-shadow: inset 0 1px 4px #fff5, 0 2px 5px #0004;
-}
-
-.count {
-  z-index: 4;
-  pointer-events: none;
 }
